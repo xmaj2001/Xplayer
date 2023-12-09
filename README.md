@@ -1,4 +1,4 @@
-# XPlayer - Reprodutor de Vídeo
+# XPlayer Reprodutor de Vídeo
 
 Bem-vindo ao XPlayer, um reprodutor de vídeo incrível desenvolvido em C# WPF com design moderno utilizando o Material Design.
 
