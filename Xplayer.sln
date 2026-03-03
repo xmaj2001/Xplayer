@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xplayer", "Xplayer\Xplayer.csproj", "{AFFFF231-19CD-4B84-8330-7EB10D3A5F60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XOP", "..\XOP\XOP\XOP.csproj", "{9FA37DEC-C83D-4077-B85D-C181F3A341C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XLibrary", "XLibrary\XLibrary.csproj", "{6DAEEE86-0207-409B-AB05-9CD95C316002}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFFFF231-19CD-4B84-8330-7EB10D3A5F60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFFFF231-19CD-4B84-8330-7EB10D3A5F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFFFF231-19CD-4B84-8330-7EB10D3A5F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFFFF231-19CD-4B84-8330-7EB10D3A5F60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FA37DEC-C83D-4077-B85D-C181F3A341C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FA37DEC-C83D-4077-B85D-C181F3A341C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FA37DEC-C83D-4077-B85D-C181F3A341C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FA37DEC-C83D-4077-B85D-C181F3A341C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DAEEE86-0207-409B-AB05-9CD95C316002}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DAEEE86-0207-409B-AB05-9CD95C316002}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DAEEE86-0207-409B-AB05-9CD95C316002}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DAEEE86-0207-409B-AB05-9CD95C316002}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

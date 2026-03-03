@@ -1,0 +1,545 @@
+﻿<Window x:Class="Xplayer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Xplayer"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{x:Null}"
+        FontFamily="{DynamicResource MaterialDesignFont}" 
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" 
+        AllowsTransparency="True"
+        Height="630" Width="1000">
+    <Window.Resources>
+        <Style x:Key="DrawerHostStyle1" TargetType="{x:Type materialDesign:DrawerHost}">
+            <Setter Property="LeftDrawerBackground" Value="{DynamicResource MaterialDesignPaper}"/>
+            <Setter Property="TopDrawerBackground" Value="{DynamicResource MaterialDesignPaper}"/>
+            <Setter Property="RightDrawerBackground" Value="{DynamicResource MaterialDesignPaper}"/>
+            <Setter Property="BottomDrawerBackground" Value="{DynamicResource MaterialDesignPaper}"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type materialDesign:DrawerHost}">
+                        <Border BorderBrush="Red" BorderThickness="{TemplateBinding BorderThickness}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="AllDrawers">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition From="AllClosed" GeneratedDuration="0" GeneratedEasingFunction="{x:Null}" To="AnyOpen">
+                                            <Storyboard>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible" Storyboard.TargetName="PART_ContentCover">
+                                                    <DiscreteBooleanKeyFrame KeyTime="0" Value="True"/>
+                                                </BooleanAnimationUsingKeyFrames>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsEnabled" Storyboard.TargetName="ContentPresenter">
+                                                    <DiscreteBooleanKeyFrame KeyTime="0" Value="True"/>
+                                                </BooleanAnimationUsingKeyFrames>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_ContentCover">
+                                                    <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.56">
+                                                        <EasingDoubleKeyFrame.EasingFunction>
+                                                            <SineEase EasingMode="EaseOut"/>
+                                                        </EasingDoubleKeyFrame.EasingFunction>
+                                                    </EasingDoubleKeyFrame>
+                                                </DoubleAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="PART_ContentCover">
+                                                    <DiscreteObjectKeyFrame KeyTime="0">
+                                                        <DiscreteObjectKeyFrame.Value>
+                                                            <SolidColorBrush Color="Transparent"/>
+                                                        </DiscreteObjectKeyFrame.Value>
+                                                    </DiscreteObjectKeyFrame>
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition From="AnyOpen" GeneratedDuration="0" GeneratedEasingFunction="{x:Null}" To="AllClosed">
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_ContentCover">
+                                                    <EasingDoubleKeyFrame KeyTime="0" Value="0.56"/>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0">
+                                                        <EasingDoubleKeyFrame.EasingFunction>
+                                                            <SineEase EasingMode="EaseInOut"/>
+                                                        </EasingDoubleKeyFrame.EasingFunction>
+                                                    </EasingDoubleKeyFrame>
+                                                </DoubleAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="PART_ContentCover">
+                                                    <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Null}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="AnyOpen">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To="0.56" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_ContentCover"/>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible" Storyboard.TargetName="PART_ContentCover">
+                                                <DiscreteBooleanKeyFrame KeyTime="0" Value="True"/>
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsEnabled" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteBooleanKeyFrame KeyTime="0" Value="True"/>
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="PART_ContentCover">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <SolidColorBrush Color="Transparent"/>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="AllClosed">
+                                        <Storyboard>
+                                            <DoubleAnimation To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_ContentCover"/>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible" Storyboard.TargetName="PART_ContentCover">
+                                                <DiscreteBooleanKeyFrame Value="False"/>
+                                            </BooleanAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="PART_ContentCover">
+                                                <DiscreteObjectKeyFrame Value="{x:Null}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="LeftDrawer">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition From="LeftDrawerClosed" GeneratedDuration="0" GeneratedEasingFunction="{x:Null}" To="LeftDrawerOpen">
+                                            <Storyboard>
+                                                <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_LeftDrawer">
+                                                    <EasingThicknessKeyFrame KeyTime="0:0:0.4" Value="0">
+                                                        <EasingThicknessKeyFrame.EasingFunction>
+                                                            <SineEase EasingMode="EaseOut"/>
+                                                        </EasingThicknessKeyFrame.EasingFunction>
+                                                    </EasingThicknessKeyFrame>
+                                                </ThicknessAnimationUsingKeyFrames>
+                                                <DoubleAnimation Duration="0:0:0.04" From="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="LeftDrawerShadow"/>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition From="LeftDrawerOpen" GeneratedDuration="0" GeneratedEasingFunction="{x:Null}" To="LeftDrawerClosed">
+                                            <Storyboard>
+                                                <ThicknessAnimation Duration="0:0:0.4" Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_LeftDrawer">
+                                                    <ThicknessAnimation.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut"/>
+                                                    </ThicknessAnimation.EasingFunction>
+                                                </ThicknessAnimation>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="LeftDrawerShadow">
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.36" Value="1"/>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0">
+                                                        <EasingDoubleKeyFrame.EasingFunction>
+                                                            <SineEase EasingMode="EaseOut"/>
+                                                        </EasingDoubleKeyFrame.EasingFunction>
+                                                    </EasingDoubleKeyFrame>
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="LeftDrawerOpen">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" From="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="LeftDrawerShadow"/>
+                                            <ThicknessAnimation Duration="0" To="0" Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_LeftDrawer"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="LeftDrawerClosed">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" From="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="LeftDrawerShadow"/>
+                                            <ThicknessAnimation Duration="0" Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_LeftDrawer"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="RightDrawer">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition From="RightDrawerClosed" GeneratedDuration="0" GeneratedEasingFunction="{x:Null}" To="RightDrawerOpen">
+                                            <Storyboard>
+                                                <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_RightDrawer">
+                                                    <EasingThicknessKeyFrame KeyTime="0:0:0.4" Value="0">
+                                                        <EasingThicknessKeyFrame.EasingFunction>
+                                                            <SineEase EasingMode="EaseOut"/>
+                                                        </EasingThicknessKeyFrame.EasingFunction>
+                                                    </EasingThicknessKeyFrame>
+                                                </ThicknessAnimationUsingKeyFrames>
+                                                <DoubleAnimation Duration="0:0:0.04" From="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="RightDrawerShadow"/>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition From="RightDrawerOpen" GeneratedDuration="0" GeneratedEasingFunction="{x:Null}" To="RightDrawerClosed">
+                                            <Storyboard>
+                                                <ThicknessAnimation Duration="0:0:0.4" Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_RightDrawer">
+                                                    <ThicknessAnimation.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut"/>
+                                                    </ThicknessAnimation.EasingFunction>
+                                                </ThicknessAnimation>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="RightDrawerShadow">
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.36" Value="1"/>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0">
+                                                        <EasingDoubleKeyFrame.EasingFunction>
+                                                            <SineEase EasingMode="EaseOut"/>
+                                                        </EasingDoubleKeyFrame.EasingFunction>
+                                                    </EasingDoubleKeyFrame>
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="RightDrawerOpen">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" From="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="RightDrawerShadow"/>
+                                            <ThicknessAnimation Duration="0" To="0" Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_RightDrawer"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="RightDrawerClosed">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" From="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="RightDrawerShadow"/>
+                                            <ThicknessAnimation Duration="0" Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_RightDrawer"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="TopDrawer">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition From="TopDrawerClosed" GeneratedDuration="0" GeneratedEasingFunction="{x:Null}" To="TopDrawerOpen">
+                                            <Storyboard>
+                                                <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_TopDrawer">
+                                                    <EasingThicknessKeyFrame KeyTime="0:0:0.4" Value="0">
+                                                        <EasingThicknessKeyFrame.EasingFunction>
+                                                            <SineEase EasingMode="EaseOut"/>
+                                                        </EasingThicknessKeyFrame.EasingFunction>
+                                                    </EasingThicknessKeyFrame>
+                                                </ThicknessAnimationUsingKeyFrames>
+                                                <DoubleAnimation Duration="0:0:0.04" From="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TopDrawerShadow"/>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition From="TopDrawerOpen" GeneratedDuration="0" GeneratedEasingFunction="{x:Null}" To="TopDrawerClosed">
+                                            <Storyboard>
+                                                <ThicknessAnimation Duration="0:0:0.4" Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_TopDrawer">
+                                                    <ThicknessAnimation.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut"/>
+                                                    </ThicknessAnimation.EasingFunction>
+                                                </ThicknessAnimation>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TopDrawerShadow">
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.36" Value="1"/>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0">
+                                                        <EasingDoubleKeyFrame.EasingFunction>
+                                                            <SineEase EasingMode="EaseOut"/>
+                                                        </EasingDoubleKeyFrame.EasingFunction>
+                                                    </EasingDoubleKeyFrame>
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="TopDrawerOpen">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" From="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TopDrawerShadow"/>
+                                            <ThicknessAnimation Duration="0" To="0" Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_TopDrawer"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="TopDrawerClosed">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" From="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TopDrawerShadow"/>
+                                            <ThicknessAnimation Duration="0" Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_TopDrawer"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="BottomDrawer">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition From="BottomDrawerClosed" GeneratedDuration="0" GeneratedEasingFunction="{x:Null}" To="BottomDrawerOpen">
+                                            <Storyboard>
+                                                <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_BottomDrawer">
+                                                    <EasingThicknessKeyFrame KeyTime="0:0:0.4" Value="0">
+                                                        <EasingThicknessKeyFrame.EasingFunction>
+                                                            <SineEase EasingMode="EaseOut"/>
+                                                        </EasingThicknessKeyFrame.EasingFunction>
+                                                    </EasingThicknessKeyFrame>
+                                                </ThicknessAnimationUsingKeyFrames>
+                                                <DoubleAnimation Duration="0:0:0.04" From="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BottomDrawerShadow"/>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition From="BottomDrawerOpen" GeneratedDuration="0" GeneratedEasingFunction="{x:Null}" To="BottomDrawerClosed">
+                                            <Storyboard>
+                                                <ThicknessAnimation Duration="0:0:0.4" Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_BottomDrawer">
+                                                    <ThicknessAnimation.EasingFunction>
+                                                        <SineEase EasingMode="EaseOut"/>
+                                                    </ThicknessAnimation.EasingFunction>
+                                                </ThicknessAnimation>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BottomDrawerShadow">
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.36" Value="1"/>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0">
+                                                        <EasingDoubleKeyFrame.EasingFunction>
+                                                            <SineEase EasingMode="EaseOut"/>
+                                                        </EasingDoubleKeyFrame.EasingFunction>
+                                                    </EasingDoubleKeyFrame>
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="BottomDrawerOpen">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" From="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BottomDrawerShadow"/>
+                                            <ThicknessAnimation Duration="0" To="0" Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_BottomDrawer"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="BottomDrawerClosed">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" From="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BottomDrawerShadow"/>
+                                            <ThicknessAnimation Duration="0" Storyboard.TargetProperty="Margin" Storyboard.TargetName="PART_BottomDrawer"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid x:Name="RootGrid">
+                                <AdornerDecorator>
+                                    <ContentPresenter x:Name="ContentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Opacity="1"/>
+                                </AdornerDecorator>
+                                <Grid x:Name="PART_ContentCover" Background="{x:Null}" Focusable="False" IsHitTestVisible="False" Opacity="0"/>
+                                <Grid>
+                                    <Grid x:Name="PART_LeftDrawer" HorizontalAlignment="Left" VerticalAlignment="Stretch" Panel.ZIndex="{TemplateBinding LeftDrawerZIndex}">
+                                        <Grid.Margin>
+                                            <Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}">
+                                                <Binding.ConverterParameter>
+                                                    <Dock>Left</Dock>
+                                                </Binding.ConverterParameter>
+                                                <Binding.Converter>
+                                                    <materialDesign:DrawerOffsetConverter/>
+                                                </Binding.Converter>
+                                            </Binding>
+                                        </Grid.Margin>
+                                        <AdornerDecorator CacheMode="{Binding (materialDesign:ShadowAssist.CacheMode), RelativeSource={RelativeSource Self}}">
+                                            <Border x:Name="LeftDrawerShadow" Background="{TemplateBinding LeftDrawerBackground}" Opacity="0">
+                                                <Border.Effect>
+                                                    <Binding Path="(materialDesign:ShadowAssist.ShadowDepth)" RelativeSource="{RelativeSource TemplatedParent}">
+                                                        <Binding.Converter>
+                                                            <materialDesign:ShadowConverter/>
+                                                        </Binding.Converter>
+                                                    </Binding>
+                                                </Border.Effect>
+                                            </Border>
+                                        </AdornerDecorator>
+                                        <ContentPresenter ContentTemplate="{TemplateBinding LeftDrawerContentTemplate}" Content="{TemplateBinding LeftDrawerContent}" ContentStringFormat="{TemplateBinding LeftDrawerContentStringFormat}" IsEnabled="{TemplateBinding IsLeftDrawerOpen}"/>
+                                    </Grid>
+                                    <Grid x:Name="PART_RightDrawer" HorizontalAlignment="Right" VerticalAlignment="Stretch" Panel.ZIndex="{TemplateBinding RightDrawerZIndex}">
+                                        <Grid.Margin>
+                                            <Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}">
+                                                <Binding.ConverterParameter>
+                                                    <Dock>Right</Dock>
+                                                </Binding.ConverterParameter>
+                                                <Binding.Converter>
+                                                    <materialDesign:DrawerOffsetConverter/>
+                                                </Binding.Converter>
+                                            </Binding>
+                                        </Grid.Margin>
+                                        <AdornerDecorator CacheMode="{Binding (materialDesign:ShadowAssist.CacheMode), RelativeSource={RelativeSource Self}}">
+                                            <Border x:Name="RightDrawerShadow" Background="{TemplateBinding RightDrawerBackground}" Opacity="0">
+                                                <Border.Effect>
+                                                    <Binding Path="(materialDesign:ShadowAssist.ShadowDepth)" RelativeSource="{RelativeSource TemplatedParent}">
+                                                        <Binding.Converter>
+                                                            <materialDesign:ShadowConverter/>
+                                                        </Binding.Converter>
+                                                    </Binding>
+                                                </Border.Effect>
+                                            </Border>
+                                        </AdornerDecorator>
+                                        <ContentPresenter ContentTemplate="{TemplateBinding RightDrawerContentTemplate}" Content="{TemplateBinding RightDrawerContent}" ContentStringFormat="{TemplateBinding RightDrawerContentStringFormat}" IsEnabled="{TemplateBinding IsRightDrawerOpen}"/>
+                                    </Grid>
+                                    <Grid x:Name="PART_TopDrawer" HorizontalAlignment="Stretch" VerticalAlignment="Top" Panel.ZIndex="{TemplateBinding TopDrawerZIndex}">
+                                        <Grid.Margin>
+                                            <Binding Path="ActualHeight" RelativeSource="{RelativeSource Self}">
+                                                <Binding.ConverterParameter>
+                                                    <Dock>Top</Dock>
+                                                </Binding.ConverterParameter>
+                                                <Binding.Converter>
+                                                    <materialDesign:DrawerOffsetConverter/>
+                                                </Binding.Converter>
+                                            </Binding>
+                                        </Grid.Margin>
+                                        <AdornerDecorator CacheMode="{Binding (materialDesign:ShadowAssist.CacheMode), RelativeSource={RelativeSource Self}}">
+                                            <Border x:Name="TopDrawerShadow" Background="{TemplateBinding TopDrawerBackground}" Opacity="0">
+                                                <Border.Effect>
+                                                    <Binding Path="(materialDesign:ShadowAssist.ShadowDepth)" RelativeSource="{RelativeSource TemplatedParent}">
+                                                        <Binding.Converter>
+                                                            <materialDesign:ShadowConverter/>
+                                                        </Binding.Converter>
+                                                    </Binding>
+                                                </Border.Effect>
+                                            </Border>
+                                        </AdornerDecorator>
+                                        <ContentPresenter ContentTemplate="{TemplateBinding TopDrawerContentTemplate}" Content="{TemplateBinding TopDrawerContent}" ContentStringFormat="{TemplateBinding TopDrawerContentStringFormat}" IsEnabled="{TemplateBinding IsTopDrawerOpen}"/>
+                                    </Grid>
+                                    <Grid x:Name="PART_BottomDrawer" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Panel.ZIndex="{TemplateBinding BottomDrawerZIndex}">
+                                        <Grid.Margin>
+                                            <Binding Path="ActualHeight" RelativeSource="{RelativeSource Self}">
+                                                <Binding.ConverterParameter>
+                                                    <Dock>Bottom</Dock>
+                                                </Binding.ConverterParameter>
+                                                <Binding.Converter>
+                                                    <materialDesign:DrawerOffsetConverter/>
+                                                </Binding.Converter>
+                                            </Binding>
+                                        </Grid.Margin>
+                                        <AdornerDecorator CacheMode="{Binding (materialDesign:ShadowAssist.CacheMode), RelativeSource={RelativeSource Self}}">
+                                            <Border x:Name="BottomDrawerShadow" Background="{TemplateBinding BottomDrawerBackground}" Opacity="0">
+                                                <Border.Effect>
+                                                    <Binding Path="(materialDesign:ShadowAssist.ShadowDepth)" RelativeSource="{RelativeSource TemplatedParent}">
+                                                        <Binding.Converter>
+                                                            <materialDesign:ShadowConverter/>
+                                                        </Binding.Converter>
+                                                    </Binding>
+                                                </Border.Effect>
+                                            </Border>
+                                        </AdornerDecorator>
+                                        <ContentPresenter ContentTemplate="{TemplateBinding BottomDrawerContentTemplate}" Content="{TemplateBinding BottomDrawerContent}" ContentStringFormat="{TemplateBinding BottomDrawerContentStringFormat}" IsEnabled="{TemplateBinding IsBottomDrawerOpen}"/>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <materialDesign:Card 
+        UniformCornerRadius="4"
+        VerticalAlignment="Stretch"
+        HorizontalAlignment="Stretch" 
+        Background="Transparent">
+        <Grid Name="backFundo" Background="#FF1B1B1C">
+            
+            <TextBlock Visibility="Collapsed" Name="tema" Foreground="#FF35EA00" Background="#FF050505"/>
+            <Border Height="40" Name="BarraTop" BorderThickness="0 " BorderBrush="{Binding ElementName=tema,Path=Foreground}" VerticalAlignment="Top"
+                            HorizontalAlignment="Stretch" Background="{Binding ElementName=tema,Path=Background}">
+
+                <Grid>
+                    <Button Background="{x:Null}" BorderBrush="{x:Null}" Height="29" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="5  0" FontSize="20" Foreground="{Binding ElementName=tema,Path=Foreground}">
+                                X
+                            </TextBlock>
+
+                            <TextBlock Margin="1 0" Opacity="0.50" FontSize="16" VerticalAlignment="Bottom" Foreground="{Binding ElementName=tema,Path=Foreground}">
+                                Player
+                            </TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock HorizontalAlignment="Center" Foreground="{Binding ElementName=tema,Path=Foreground}"  FontSize="12" FontFamily="Android Insomnia"><Run Text="Home"/></TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <materialDesign:DrawerHost Name="_draw" IsBottomDrawerOpen="True" Margin="0 40 0 0" Drop="ViewPalyer_Drop" AllowDrop="True" BottomDrawerBackground="{x:Null}" Style="{StaticResource DrawerHostStyle1}">
+                
+                <materialDesign:DrawerHost.BottomDrawerContent>
+                    <Grid  Height="66">
+                        
+                        <Grid Margin="4 0" HorizontalAlignment="Stretch" Name="backSlider" VerticalAlignment="Top" Background="{Binding ElementName=tema,Path=Background}" Opacity="0.70">
+                            <Slider
+                                Name="_timeline"   
+                                HorizontalAlignment="Stretch"
+                                Foreground="{Binding ElementName=tema,Path=Foreground}"
+                                BorderBrush="{Binding ElementName=tema,Path=Foreground}"
+                                PreviewMouseUp="_timeline_PreviewMouseUp"
+                                Maximum="{Binding ElementName=ML,Path=NaturalDuration.TimeSpan.TotalSeconds}"
+                                ValueChanged="_timeline_ValueChanged" 
+                               PreviewMouseLeftButtonDown="_timeline_PreviewMouseLeftButtonDown"
+                                 />
+                        </Grid>
+                        <Grid Name="backBottom" Height="50" VerticalAlignment="Bottom"  Background="{Binding ElementName=tema,Path=Background}">
+                            <StackPanel Margin="0 0 190 0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                    <TextBlock Name="tmpt" Foreground="{Binding ElementName=tema,Path=Foreground}">
+                                       Tempo:
+                                    </TextBlock>
+                                    <TextBlock Name="tmp" Margin="10 0" Foreground="Gray">
+                                       00:00:00
+                                    </TextBlock>
+                                    <TextBlock Foreground="Gray">
+                                      |
+                                    </TextBlock>
+                                    <TextBlock Name="tmpf" Margin="10 0" Foreground="Gray">
+                                       00:00:00
+                                    </TextBlock>
+                                </StackPanel>
+                                <Button Margin="10 0" Height="30" Width="30"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="{Binding ElementName=tema,Path=Foreground}" BorderBrush="{Binding ElementName=tema,Path=Foreground}" Background="Transparent"
+                                    >
+                                    <materialDesign:PackIcon
+                                        Kind="Circle"
+                                        Height="24"
+                                        Width="24" />
+                                </Button>
+                                <Button Height="30" Width="30"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="Transparent" Foreground="{Binding ElementName=tema,Path=Foreground}" BorderBrush="{Binding ElementName=tema,Path=Foreground}"
+                                    >
+                                    <materialDesign:PackIcon
+                                        Kind="NavigateBefore"
+                                        Height="24"
+                                        Width="24" />
+                                </Button>
+                                <Button Name="btn_player" Margin="10 0" Height="30" Width="30" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="{Binding ElementName=tema,Path=Background}" Background="{Binding ElementName=tema,Path=Foreground}" BorderBrush="{Binding ElementName=tema,Path=Foreground}"
+                                    >
+                                    <materialDesign:PackIcon
+                                        Kind="Play"
+                                        Height="24"
+                                        Width="24" />
+                                </Button>
+                                <Button Height="30" Width="30"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="Transparent" Foreground="{Binding ElementName=tema,Path=Foreground}" BorderBrush="{Binding ElementName=tema,Path=Foreground}"
+                                    >
+                                    <materialDesign:PackIcon
+                                        Kind="NavigateNext"
+                                        Height="24"
+                                        Width="24" />
+                                </Button>
+                                <Button Margin="10 0" Height="30" Width="30"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="Transparent" Foreground="{Binding ElementName=tema,Path=Foreground}" BorderBrush="{Binding ElementName=tema,Path=Foreground}"
+                                    >
+                                    <materialDesign:PackIcon
+                                        Kind="Stop"
+                                        Height="24"
+                                        Width="24" />
+                                </Button>
+                            </StackPanel>
+
+                            <StackPanel Margin="10 0" Orientation="Horizontal" HorizontalAlignment="Right">
+                                <StackPanel Margin="0 0 30 0" Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Button 
+                                            Margin="10 0" 
+                                            Height="30" 
+                                            Width="30"
+                                            BorderBrush="{Binding ElementName=tema,Path=Foreground}"
+                                            Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
+                                            Background="Transparent" 
+                                            Foreground="{Binding ElementName=tema,Path=Foreground}"
+                                            >
+                                        <materialDesign:PackIcon
+                                        Kind="Audio"
+                                        Height="20"
+                                        Width="20" />
+                                    </Button>
+                                    <Slider Name="volume" VerticalAlignment="Center" Width="100" Foreground="{Binding ElementName=tema,Path=Foreground}" Value="0.3" Maximum="1"/>
+                                </StackPanel>
+                                <Button Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                                         CommandParameter="{x:Static Dock.Right}"
+                                        Background="Transparent" BorderBrush="Transparent" Foreground="{Binding ElementName=tema,Path=Foreground}">
+                                    <materialDesign:PackIcon Kind="Menu"/>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </materialDesign:DrawerHost.BottomDrawerContent>
+                <Grid Name="ViewPalyer">
+                    <Button Visibility="Visible" materialDesign:RippleAssist.IsDisabled="True" AllowDrop="True" Click="Button_Click" Background="{x:Null}" BorderBrush="{x:Null}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Padding="0" Height="Auto">
+                        <Grid>
+                            
+                            <MediaElement  Visibility="Visible"
+                                          x:Name="ML" Volume="0.1" Loaded="ML_Loaded" LoadedBehavior="Manual" />
+                            <TextBlock Language="pt-PT" Name="subtitleText" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="20" Margin="0 70">
+                                ddddd
+                            </TextBlock>
+                            <materialDesign:ColorZone/>
+                        </Grid>
+                    </Button>
+                </Grid>
+            </materialDesign:DrawerHost>
+        </Grid>
+    </materialDesign:Card>
+</Window>

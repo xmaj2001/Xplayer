@@ -1,0 +1,5 @@
+C:\Users\MAXI5\Documents\0XMAJ\Keymura\Idioma\C#\Projectos\Xplayer\XLibrary\bin\Debug\XLibrary.dll
+C:\Users\MAXI5\Documents\0XMAJ\Keymura\Idioma\C#\Projectos\Xplayer\XLibrary\bin\Debug\XLibrary.pdb
+C:\Users\MAXI5\Documents\0XMAJ\Keymura\Idioma\C#\Projectos\Xplayer\XLibrary\obj\Debug\XLibrary.csprojResolveAssemblyReference.cache
+C:\Users\MAXI5\Documents\0XMAJ\Keymura\Idioma\C#\Projectos\Xplayer\XLibrary\obj\Debug\XLibrary.dll
+C:\Users\MAXI5\Documents\0XMAJ\Keymura\Idioma\C#\Projectos\Xplayer\XLibrary\obj\Debug\XLibrary.pdb

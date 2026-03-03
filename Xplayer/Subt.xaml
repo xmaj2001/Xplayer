@@ -1,0 +1,17 @@
+﻿<Window x:Class="Xplayer.Subt"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Xplayer"
+        mc:Ignorable="d"
+        Title="Subt" Height="332.18" Width="485.813">
+    <Grid>
+        <ListBox Name="_it" Margin="0,0,0,56">
+
+        </ListBox>
+        <Button VerticalAlignment="Bottom" Click="Button_Click">
+            Ver
+        </Button>
+    </Grid>
+</Window>
